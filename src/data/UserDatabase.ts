@@ -35,7 +35,7 @@ export class UserDatabase extends BaseDatabase {
             .into(UserDatabase.TABLE_NAME);
       } catch (error) { 
          if (error.errno === 1062) {
-            throw new Error ("Duplicated entries")
+            throw new Error ("Duplicate entries")
          }
          console.log(error)
          throw new CustomError(500, "An unexpected error ocurred");

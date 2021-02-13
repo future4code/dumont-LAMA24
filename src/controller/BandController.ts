@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { BandInputDTO } from "../business/entities/Bands";
+import { BandInputDTO, BandParamsDTO } from "../business/entities/Bands";
 import { Authenticator } from "../business/services/Authenticator";
 import { IdGenerator } from "../business/services/IdGenerator";
 import { BandDatabase } from "../data/BandDatabase";
@@ -32,24 +32,23 @@ const bandBusiness = new BandBusiness(
        }
     }
  
-//     async login(req: Request, res: Response) {
+    async selectBandByName(req: Request, res: Response) {
  
-//        try {
+       try {
  
-//           const loginData: LoginInputDTO = {
-//              email: req.body.email,
-//              password: req.body.password
-//           };
+          const bandName: BandParamsDTO = {
+              name: req.params.name
+          }
  
-//           const token = await userBusiness.getUserByEmail(loginData);
+          const token = await bandBusiness.getBandByName(bandName);
  
-//           res.status(200).send({ token });
+          res.status(200).send({ token });
  
-//        } catch (error) {
-//           res
-//              .status(error.statusCode || 400)
-//              .send({ error: error.message });
-//        }
-//     }
+       } catch (error) {
+          res
+             .status(error.statusCode || 400)
+             .send({ error: error.message });
+       }
+    }
  
  }

@@ -1,4 +1,4 @@
-import { BandInputDTO } from "./entities/Bands";
+import { Band, BandInputDTO, BandParamsDTO } from "./entities/Bands";
 import { BandDatabase } from "../data/BandDatabase";
 import { IdGenerator } from "./services/IdGenerator";
 import { Authenticator } from "./services/Authenticator";
@@ -35,32 +35,18 @@ export class BandBusiness {
       return accessToken;
    }
 
-//    async getUserByEmail(user: LoginInputDTO) {
+   async getBandByName(band: BandParamsDTO) {
 
-//       const userFromDB = await this.userDatabase.getUserByEmail(user.email);
+    const bandFromDB = await this.bandDatabase.getBandByName(band.name);
 
-//         if (!userFromDB) {
-//             throw new Error ("Invalid credentials")
-//         }
+        if (!bandFromDB) {
+            throw new Error ("Invalid band")
+        }
+        return bandFromDB
+    }
+ 
 
-//         if (!user.email || !user.password) {
-//             throw new Error ("Enter email and password")
-//         }
-
-//       const passwordIsCorrect = await this.hashManager.compare(
-//          user.password,
-//          userFromDB.password
-//       );
-
-//       const accessToken = this.authenticator.generateToken({
-//          id: userFromDB.id,
-//          role: userFromDB.role
-//       });
-
-//       if (!passwordIsCorrect) {
-//          throw new CustomError(401, "Invalid password!");
-//       }
-
-//       return accessToken;
-//    }
 }
+       
+
+
