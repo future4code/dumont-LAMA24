@@ -5,4 +5,4 @@ export const bandRouter = express.Router();
 
 const bandController = new BandController();
 bandRouter.post("/signup", bandController.signupBand);
-//bandRouter.post("/login", userController.login);
+bandRouter.get("/:name", bandController.selectBandByName);

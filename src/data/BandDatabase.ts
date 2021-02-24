@@ -48,4 +48,17 @@ export class BandDatabase extends BaseDatabase {
            throw new CustomError(500, "An unexpected error ocurred");
         }
      }
+
+     public async getBandById(id: string): Promise<Band> {
+        try {
+           const result = await BaseDatabase.connection
+              .select("*")
+              .from(BandDatabase.TABLE_NAME)
+              .where({ id });
+  
+           return BandDatabase.toBandModel(result[0]);
+        } catch (error) {
+           throw new CustomError(500, "An unexpected error ocurred");
+        }
+     }
   }

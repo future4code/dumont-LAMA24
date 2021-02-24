@@ -3,6 +3,7 @@ import cors from 'cors';
 import { AddressInfo } from "net";
 import { userRouter } from './controller/routes/UserRouter';
 import { bandRouter } from "./controller/routes/BandRouter";
+import { showRouter } from './controller/routes/ShowRouter';
 
 const app: Express = express();
 
@@ -11,6 +12,7 @@ app.use(cors());
 
 app.use("/user", userRouter);
 app.use("/band", bandRouter);
+app.use("/show", showRouter);
 
 
 const server = app.listen(process.env.PORT || 3003, () => {

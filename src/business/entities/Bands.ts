@@ -17,3 +17,6 @@ export interface BandInputDTO {
     responsible: string
 }
 
+export interface BandParamsDTO {
+    name: string
+}
